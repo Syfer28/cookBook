@@ -6,12 +6,18 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/home/")
+      .get("http://localhost:4000/recipes/")
       .then((response) => setData(response.data))
       .catch((error) => console.log(error));
   }, []);
 
-  return <div>{data ? <p>{data.name}</p> : <p>Loading...</p>}</div>;
+  console.log(data);
+
+  return (
+    <div>
+      {data ? data.map((recipe) => <p>{recipe.title}</p>) : <p>Loading...</p>}
+    </div>
+  );
 };
 
 export default Home;
